@@ -1,10 +1,11 @@
 from timer import timer
 
 
-def SetUpTimerAndCountDown5minCalledAfterPressingButtonA():
+def set_up_timer_and_countdown_5min():
+    '''
+    This functionality will be triggered after pressing a button
+    '''
     t = timer()
-    # I press "A" 
-    # TODO: add this test case
     
     # Timer is set up to 5
     t.set(5)
@@ -36,6 +37,12 @@ def SetUpTimerAndCountDown5minCalledAfterPressingButtonA():
     # And buzzer is off
     assert t.is_countdown_just_reached_zero() == False
     
+
+ 
     
 if __name__ == "__main__":
-    SetUpTimerAndCountDown5minCalledAfterPressingButtonA()
+    print("Running functional tests")
+    print(".",end='')
+    set_up_timer_and_countdown_5min()
+    
+    print()
