@@ -2,3 +2,6 @@
 
 
 ## Key features
+
+## Hardware setup
+* I2C_SDA (GPIO4) used as a buzzer

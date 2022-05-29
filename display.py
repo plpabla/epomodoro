@@ -4,16 +4,25 @@ import time
 class display:
     
     _display = None
+    _previous_t = None
     
     def __init__(self, display_handle):
         self._display = display_handle
         self._display.update_speed(2)
         
     def update(self, time_val=0):
-        self._clear()
-        self._legend()
-        self._time(time_val)
-        self._display.update()
+        if self.is_display_update_needed(time_val):
+            self._clear()
+            self._legend()
+            self._time(time_val)
+            self._display.update()
+    
+    def is_display_update_needed(self, time_val):
+        if self._previous_t == time_val:
+            return False
+        else:
+            self._previous_t = time_val
+            return True
         
     def _clear(self):
         self._display.pen(15)
