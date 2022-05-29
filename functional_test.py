@@ -26,12 +26,15 @@ def SetUpTimerAndCountDown5minCalledAfterPressingButtonA():
     assert t.get_current_t() == 0
     
     # I hear buzzer
-    # TODO: check if it was trigerred
+    assert t.is_countdown_just_reached_zero() == True
     
     # After another one minute it is still zero
     t.tick()
     
     assert t.get_current_t() == 0
+    
+    # And buzzer is off
+    assert t.is_countdown_just_reached_zero() == False
     
     
 if __name__ == "__main__":
