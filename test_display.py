@@ -21,21 +21,29 @@ class TimerTest(unittest.TestCase):
         
         self.assertEqual(self.display._display.cnt_clear, 1)
         
-    def test_legend_function_calls_text(self):
+    def test_legend_function_calls_text_at_least_once(self):
         self.display._legend()
         
         self.assertTrue(self.display._display.cnt_text > 0)
+        
+    def test_show_time_displays_value_1_from_timer(self):    
+        self.display._time(1)
+        
+        self.assertEqual(self.display._display.last_text, "1")
+        
         
     
 class MockDisplay():
     cnt_clear = 0
     cnt_text = 0
+    last_text = None
     
     def clear(self):
         self.cnt_clear += 1
     
     def text(self, message, x, y, scale=1.0, rotation=0.0):
-        print(f"text in ({x},{y}): {message}")
+        # print(f"text in ({x},{y}): {message}")
+        self.last_text = message
         self.cnt_text += 1
     
     def glyph(self, char, x, y, scale=1.0, rotation=0.0):

@@ -36,13 +36,28 @@ def set_up_timer_and_countdown_5min():
     
     # And buzzer is off
     assert t.is_countdown_just_reached_zero() == False
+   
     
-
+def update_display_shows_legen_and_current_time():
+    '''
+    This function will be called when update is needed
+    '''
+    
+    # Display is cleared
+    
+    # Legend is displayed
+    
+    # Current time is displayed
+    
+    
  
     
 if __name__ == "__main__":
     print("Running functional tests")
     print(".",end='')
     set_up_timer_and_countdown_5min()
+
+    print(".",end='')    
+    update_display_shows_legen_and_current_time()
     
     print()
