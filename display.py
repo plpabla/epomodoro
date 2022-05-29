@@ -7,6 +7,7 @@ class display:
     
     def __init__(self, display_handle):
         self._display = display_handle
+        self._display.update_speed(2)
         
     def update(self, time_val=0):
         self._clear()

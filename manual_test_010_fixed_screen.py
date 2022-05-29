@@ -1,10 +1,8 @@
 '''
-This test will display main screen with constant value 10
+This test will display main screen with constant value
 
-It should stay at zero
 '''
 
-from timer import timer
 from display import display
 import badger2040
 

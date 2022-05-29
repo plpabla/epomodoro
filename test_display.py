@@ -40,6 +40,15 @@ class MockDisplay():
     
     def clear(self):
         self.cnt_clear += 1
+        
+    def thickness(self, thick):
+        pass
+    
+    def pen(self, colour):
+        pass
+    
+    def update_speed(self, speed):
+        pass
     
     def text(self, message, x, y, scale=1.0, rotation=0.0):
         # print(f"text in ({x},{y}): {message}")
