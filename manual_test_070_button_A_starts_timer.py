@@ -33,7 +33,7 @@ t.set(0)
 tim = Timer()
 
 update_timer(None)
-tim.init(period=2_000, mode=Timer.PERIODIC, callback=update_timer)
+tim.init(period=60_000, mode=Timer.PERIODIC, callback=update_timer)
 
 def btn_callback(pin):
     if pin==button_A:
@@ -45,7 +45,8 @@ def btn_callback(pin):
     if pin==button_UP:
         t.set(t.get_current_t()+1)
     if pin==button_DOWN:
-        t.set(t.get_current_t()-1)
+        t.tick()
+    disp.update(t.get_current_t())
 
 def setup(btn):
     button = Pin(btn, Pin.IN, Pin.PULL_DOWN)
