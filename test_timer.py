@@ -15,6 +15,11 @@ class TimerTest(unittest.TestCase):
     def test_timer_initialized_with_zero(self):
         self.assertEqual(self.t.get_current_t(), 0)
         
+    def test_set_timer_for_1(self):
+        self.t.set(1)
+        
+        self.assertEqual(self.t.get_current_t(), 1)
+        
         
 if __name__ == "__main__":
     unittest.main()
