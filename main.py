@@ -21,21 +21,15 @@ disp = display(badger)
 buzzer = Buzzer()
 
 def update_timer(tim):
+    t.tick()
     disp.update(t.get_current_t())
+    
     if(t.is_countdown_just_reached_zero()):
         buzzer.beep()
-    # FIXME: tick sets the flag which is being checked, so now order is first to check flag, then call tick. It should be other way around as right now alarm is beeping at t=1 not t=0    
-    t.tick()
-
-
-t = timer()
-t.set(0)
-tim = Timer()
-
-update_timer(None)
-tim.init(period=60_000, mode=Timer.PERIODIC, callback=update_timer)
+    
 
 def btn_callback(pin):
+    restart_counter_if_we_start(t.get_current_t())
     if pin==button_A:
         t.set(5)
     if pin==button_B:
@@ -48,6 +42,14 @@ def btn_callback(pin):
         t.tick()
     disp.update(t.get_current_t())
 
+
+def restart_counter_if_we_start(t0):
+    global tim
+    if t0==0:
+        tim.deinit()
+        tim.init(period=60_000, mode=Timer.PERIODIC, callback=update_timer)
+
+
 def setup(btn):
     button = Pin(btn, Pin.IN, Pin.PULL_DOWN)
     button.irq(trigger=Pin.IRQ_FALLING, handler=btn_callback)
@@ -58,3 +60,10 @@ button_B = setup(BUTTON_B)
 button_C = setup(BUTTON_C)
 button_UP = setup(BUTTON_UP)
 button_DOWN = setup(BUTTON_DOWN)
+
+t = timer()
+t.set(0)
+tim = Timer()
+
+update_timer(None)
+tim.init(period=60_000, mode=Timer.PERIODIC, callback=update_timer)
