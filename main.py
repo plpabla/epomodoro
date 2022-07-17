@@ -1,9 +1,15 @@
 '''
 Start countdown when button is pressed
 Countdown and enable buzzer when reaching zero
+
+TODO: Implement sleep/deepsleep to save the battery (https://github.com/ghubcoder/micropython-pico-deepsleep)
+1. Sleep 60s between refresh
+2. Sleep after reaching zero
+Wakeup when button is pressed
 '''
 
 from display import display
+from display import TIME_A, TIME_B, TIME_C
 from timer import timer
 from machine import Timer
 from machine import Pin
@@ -31,11 +37,11 @@ def update_timer(tim):
 def btn_callback(pin):
     restart_counter_if_we_start(t.get_current_t())
     if pin==button_A:
-        t.set(5)
+        t.set(TIME_A)
     if pin==button_B:
-        t.set(10)
+        t.set(TIME_B)
     if pin==button_C:
-        t.set(25)
+        t.set(TIME_C)
     if pin==button_UP:
         t.set(t.get_current_t()+1)
     if pin==button_DOWN:
