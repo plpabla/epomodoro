@@ -22,3 +22,7 @@ class display_map():
     
     POS_TIMER_X = 50
     POS_TIMER_Y = 50
+    
+    TIME_A = 5
+    TIME_B = 15
+    TIME_C = 25

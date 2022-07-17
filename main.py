@@ -9,7 +9,7 @@ Wakeup when button is pressed
 '''
 
 from display import display
-from display import TIME_A, TIME_B, TIME_C
+from display_map import display_map
 from timer import timer
 from machine import Timer
 from machine import Pin
@@ -37,11 +37,11 @@ def update_timer(tim):
 def btn_callback(pin):
     restart_counter_if_we_start(t.get_current_t())
     if pin==button_A:
-        t.set(TIME_A)
+        t.set(display_map.TIME_A)
     if pin==button_B:
-        t.set(TIME_B)
+        t.set(display_map.TIME_B)
     if pin==button_C:
-        t.set(TIME_C)
+        t.set(display_map.TIME_C)
     if pin==button_UP:
         t.set(t.get_current_t()+1)
     if pin==button_DOWN:

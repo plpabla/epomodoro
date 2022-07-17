@@ -1,10 +1,6 @@
 from display_map import display_map
 import time
 
-TIME_A = 5
-TIME_B = 15
-TIME_C = 25
-
 class display:
     
     _display = None
@@ -36,9 +32,9 @@ class display:
     def _legend(self):
         self._display.thickness(1)
         
-        items = [[display_map.POS_LEGEND_A_X, display_map.POS_LEGEND_A_Y, str(TIME_A)],
-                [display_map.POS_LEGEND_B_X, display_map.POS_LEGEND_B_Y, str(TIME_B)],
-                [display_map.POS_LEGEND_C_X, display_map.POS_LEGEND_C_Y, str(TIME_C)],
+        items = [[display_map.POS_LEGEND_A_X, display_map.POS_LEGEND_A_Y, str(display_map.TIME_A)],
+                [display_map.POS_LEGEND_B_X, display_map.POS_LEGEND_B_Y, str(display_map.TIME_B)],
+                [display_map.POS_LEGEND_C_X, display_map.POS_LEGEND_C_Y, str(display_map.TIME_C)],
                 [display_map.POS_LEGEND_UP_X, display_map.POS_LEGEND_UP_Y, "+1min"],
                 [display_map.POS_LEGEND_DOWN_X, display_map.POS_LEGEND_DOWN_Y, "-1min"]]
        
