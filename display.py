@@ -10,11 +10,12 @@ class display:
         self._display = display_handle
         self._display.update_speed(2)
         
-    def update(self, time_val=0):
+    def update(self, time_val=0, full=0, empty=0):
         if self.is_display_update_needed(time_val):
             self._clear()
             self._legend()
             self._time(time_val)
+            self._pomodoros(full, empty)
             self._display.update()
     
     def is_display_update_needed(self, time_val):
@@ -48,3 +49,15 @@ class display:
                            display_map.POS_TIMER_Y,
                            scale=2.5)
         
+    def _pomodoros(self, full, empty):
+        pos_x = display_map.POS_POM_X
+
+        self._display.thickness(10)
+        for _ in range(full):        
+            self._display.text("O", pos_x, display_map.POS_POM_Y)
+            pos_x += display_map.POS_POM_DELTA_X
+
+        self._display.thickness(2)
+        for _ in range(empty):
+            self._display.text("O", pos_x, display_map.POS_POM_Y)
+            pos_x += display_map.POS_POM_DELTA_X

@@ -21,8 +21,12 @@ class display_map():
     POS_LEGEND_DOWN_Y = 90
     
     POS_TIMER_X = 50
-    POS_TIMER_Y = 50
+    POS_TIMER_Y = 70
+
+    POS_POM_X = 10
+    POS_POM_DELTA_X = 20
+    POS_POM_Y = 20
     
     TIME_A = 5
-    TIME_B = 15
+    TIME_B = 10
     TIME_C = 25

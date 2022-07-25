@@ -28,7 +28,7 @@ buzzer = Buzzer()
 
 def update_timer(tim):
     t.tick()
-    disp.update(t.get_current_t())
+    disp.update(t.get_current_t(), t.pom.full_cnt, t.pom.empty_cnt)
     
     if(t.is_countdown_just_reached_zero()):
         buzzer.beep()
@@ -38,10 +38,13 @@ def btn_callback(pin):
     restart_counter_if_we_start(t.get_current_t())
     if pin==button_A:
         t.set(display_map.TIME_A)
+        t.pom.set_break_flag()
     if pin==button_B:
         t.set(display_map.TIME_B)
+        t.pom.set_break_flag()
     if pin==button_C:
         t.set(display_map.TIME_C)
+        t.pom.set_pomodoro_flag()
     if pin==button_UP:
         t.set(t.get_current_t()+1)
     if pin==button_DOWN:

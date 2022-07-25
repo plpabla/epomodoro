@@ -1,10 +1,12 @@
+from pomodoro import PomodoroDraw
+
 class timer():
     
     current_timer_vale = 0
     just_reached_zero_flag = False
     
     def __init__(self):
-        pass
+        self.pom = PomodoroDraw()
     
     def get_current_t(self):
         return self.current_timer_vale
@@ -18,6 +20,7 @@ class timer():
             self.current_timer_vale -= 1
             if(self.current_timer_vale==0):
                 self.just_reached_zero_flag = True
+                self.update_pomodoro_icons()
     
     def is_countdown_just_reached_zero(self):
         '''
@@ -26,3 +29,6 @@ class timer():
         result = self.just_reached_zero_flag
         self.just_reached_zero_flag = False
         return result
+
+    def update_pomodoro_icons(self):
+        self.pom.add_pom()
