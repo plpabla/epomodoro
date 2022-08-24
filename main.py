@@ -22,6 +22,12 @@ BUTTON_C = 14
 BUTTON_UP = 15
 BUTTON_DOWN = 11
 
+ONE_MINUTE_IN_MSEC = 60_000
+RINGING_FILTER_100_MS = 3
+
+# For testing only
+# ONE_MINUTE_IN_SEC = 3_000
+
 badger = badger2040.Badger2040()
 disp = display(badger)
 buzzer = Buzzer()
@@ -32,9 +38,32 @@ def update_timer(tim):
     
     if(t.is_countdown_just_reached_zero()):
         buzzer.beep()
+
+tick = 0    
+def fn(tim):
+    global tick
+    tick+=1
+
+tim_tick = Timer()
+tim_tick.init(period=100, mode=Timer.PERIODIC, callback=fn)
+
+def callback_called_recently(last_call = [None]):
+    if last_call[0] is None:
+        last_call[0] = tick
+        return False
     
+    if tick - last_call[0] < RINGING_FILTER_100_MS:
+        last_call[0] = tick
+        return True 
+    else:
+        last_call[0] = tick
+        return False 
 
 def btn_callback(pin):
+    if callback_called_recently():
+        print(f"callback called recently")
+        return
+    print(f"Button pressed at t= {tick}")
     restart_counter_if_we_start(t.get_current_t())
     if pin==button_A:
         t.set(display_map.TIME_A)
@@ -56,7 +85,7 @@ def restart_counter_if_we_start(t0):
     global tim
     if t0==0:
         tim.deinit()
-        tim.init(period=60_000, mode=Timer.PERIODIC, callback=update_timer)
+        tim.init(period=ONE_MINUTE_IN_MSEC, mode=Timer.PERIODIC, callback=update_timer)
 
 
 def setup(btn):
@@ -75,4 +104,4 @@ t.set(0)
 tim = Timer()
 
 update_timer(None)
-tim.init(period=60_000, mode=Timer.PERIODIC, callback=update_timer)
+tim.init(period=ONE_MINUTE_IN_MSEC, mode=Timer.PERIODIC, callback=update_timer)

@@ -10,8 +10,8 @@ class display:
         self._display = display_handle
         self._display.update_speed(2)
         
-    def update(self, time_val=0, full=0, empty=0):
-        if self.is_display_update_needed(time_val):
+    def update(self, time_val=0, full=0, empty=0, force=False):
+        if self.is_display_update_needed(time_val) or force:
             self._clear()
             self._legend()
             self._time(time_val)
